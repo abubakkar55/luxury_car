@@ -7,6 +7,7 @@ import Home from './Pages/Home';
 import "aos/dist/aos.css";
 import AOS from "aos";
 import { useEffect } from 'react';
+import MongoFirebaseProvider from './Context/MongoFirebaseProvider';
 
 
 function App() {
@@ -16,33 +17,35 @@ function App() {
     AOS.refresh();
   }, []);
 
-
-
+  
   return (
-    <div className="App">
+    <MongoFirebaseProvider>
+      <div className="App">
 
-      <Router>
-        <Header />
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-
-
-
-          <Route path="*">
-            <NotFound />
-          </Route>
-
-
-        </Switch>
-
-        <Footer />
-      </Router>
+        <Router>
+          <Header />
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
 
 
 
-    </div>
+            <Route path="*">
+              <NotFound />
+            </Route>
+
+
+          </Switch>
+
+          <Footer />
+        </Router>
+
+
+
+      </div>
+    </MongoFirebaseProvider>
+
   );
 }
 
