@@ -10,6 +10,7 @@ const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
     const toggleMenu = () => setIsOpen(!isOpen);
 
+    
     return (
         <div className="shadow px-5">
             <div className="container mx-auto flex items-center justify-between h-20">
@@ -39,9 +40,6 @@ const Header = () => {
                 <dvi className="hidden lg:block">
 
                     <ul className="flex items-center gap-4 font-semibold">
-                        <li>
-                            <NavLink to="/login">   Login  </NavLink>
-                        </li>
                         <li>
                             <NavLink to="/register"> Register  </NavLink>
                         </li>

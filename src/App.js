@@ -8,6 +8,7 @@ import "aos/dist/aos.css";
 import AOS from "aos";
 import { useEffect } from 'react';
 import MongoFirebaseProvider from './Context/MongoFirebaseProvider';
+import RegisterLogin from './Pages/RegisterLogin';
 
 
 function App() {
@@ -27,6 +28,10 @@ function App() {
           <Switch>
             <Route exact path="/">
               <Home />
+            </Route>
+
+            <Route exact path="/register">
+              <RegisterLogin />
             </Route>
 
 

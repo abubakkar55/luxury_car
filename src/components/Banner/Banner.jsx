@@ -11,9 +11,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/swiper-bundle.min.css'
 import 'swiper/components/pagination/pagination.min.css';
 import 'swiper/components/navigation/navigation.min.css';
-import Skeleton from 'react-loading-skeleton';
 SwiperCore.use([Navigation, Pagination, Autoplay, Scrollbar])
-
 
 const Banner = () => {
 
@@ -21,10 +19,7 @@ const Banner = () => {
 
     return (
         <div>
-
-
             {
-
                 sliderData.length > 0 ?
 
                     <div className="" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2)), url(${bg})`, backgroundPosition: "center center", backgroundSize: "100% 100%" }}
