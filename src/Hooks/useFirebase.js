@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react"
 import firebaseInit from './../Firebase/firebaseInit';
 import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile } from "firebase/auth";
+import swal from "sweetalert";
+
 firebaseInit();
 
 const useFirebase = () => {
@@ -8,6 +10,10 @@ const useFirebase = () => {
     const [firebaseData, setFirebaseData] = useState({});
     const [firebaseError, setFirebaseError] = useState("");
     const [isLoading, setIsLoading] = useState(true);
+    const [name, setName] = useState("Login");
+    const [gender, setGender] = useState("");
+    const errorMessage = () => swal("Oppos!", "wrong password ", "warning");
+
 
     const inputData = [
         {
@@ -71,15 +77,25 @@ const useFirebase = () => {
     };
 
     // sign in  
-    const signInUser = () => {
-        setIsLoading(true)
-        signInWithEmailAndPassword(userData?.logingEmail, userData?.logingPassword)
+    const signInUser = (history, redirect_Uri, successMeassage, passwordNotMatched) => {
+        setIsLoading(true);
+        if (userData.logingPassword !== userData.logingPassword2) {
+            passwordNotMatched();
+            setIsLoading(false);
+            return;
+        }
+        signInWithEmailAndPassword(auth, userData?.logingEmail, userData?.logingPassword)
             .then(res => {
                 setFirebaseError("");
+                //const data = res.user;
+                //data.gender = gender;
                 setFirebaseData(res.user);
+                successMeassage();
+                history.replace(redirect_Uri);
             })
             .catch((error) => {
                 setFirebaseError(error.message);
+                errorMessage();
             })
             .finally(() => {
                 setIsLoading(false);
@@ -88,7 +104,7 @@ const useFirebase = () => {
 
     // update user
     const updateUser = () => {
-        updateProfile(auth, {
+        updateProfile(auth.currentUser, {
             displayName: userData?.registerName
         }).then(res => {
 
@@ -98,14 +114,16 @@ const useFirebase = () => {
     // sign up  
     const signUpUser = () => {
         setIsLoading(true)
-        createUserWithEmailAndPassword(userData?.registerEmail, userData?.registerPassword)
+        createUserWithEmailAndPassword(auth, userData?.registerEmail, userData?.registerPassword)
             .then(res => {
                 updateUser();
                 setFirebaseError("");
                 setFirebaseData(res.user);
+                logOut();
             })
             .catch((error) => {
                 setFirebaseError(error.message);
+                console.log(error.message);
             })
             .finally(() => {
                 setIsLoading(false);
@@ -115,9 +133,12 @@ const useFirebase = () => {
     //logout
     const logOut = () => {
         signOut(auth)
-            .then(res => {
+            .then(() => {
                 setFirebaseData({});
             })
+            .finally(() => {
+                setIsLoading(false);
+            });
     }
 
 
@@ -129,11 +150,12 @@ const useFirebase = () => {
             } else {
                 setFirebaseData({});
             }
+            setIsLoading(false);
         })
     }, [])
 
 
-    return { userData, setUserData, handleUserData, inputData, googleSignIn, signInUser, logOut, signUpUser, isLoading, firebaseError, firebaseData }
+    return { userData, setUserData, handleUserData, inputData, googleSignIn, signInUser, logOut, signUpUser, isLoading, firebaseError, firebaseData, name, setName, setGender }
 }
 
 export default useFirebase

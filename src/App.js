@@ -9,6 +9,8 @@ import AOS from "aos";
 import { useEffect } from 'react';
 import MongoFirebaseProvider from './Context/MongoFirebaseProvider';
 import RegisterLogin from './Pages/RegisterLogin';
+import ExploreProducts from './Pages/ExploreProducts';
+import Reviews from './components/Reviews/Reviews';
 
 
 function App() {
@@ -30,8 +32,16 @@ function App() {
               <Home />
             </Route>
 
-            <Route exact path="/register">
+            <Route  path="/register">
               <RegisterLogin />
+            </Route>
+
+            <Route  path="/explore_cars">
+              <ExploreProducts />
+            </Route>
+
+            <Route  path="/reviews">
+              <Reviews />
             </Route>
 
 

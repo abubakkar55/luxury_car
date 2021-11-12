@@ -2,11 +2,13 @@ import React from 'react'
 import useMongoFirebase from '../../Hooks/useMongoFirebase';
 
 const Register = () => {
-    const { firebaseContext: { handleUserData, inputData, userData } } = useMongoFirebase();
+    const { firebaseContext: { handleUserData, userData, inputData, signUpUser, logOut, setName, isLoading, firebaseError, firebaseData, setGender } } = useMongoFirebase();
+
 
     const handleRegisterSubmit = (e) => {
         e.preventDefault();
-        console.log(userData);
+        signUpUser();
+        setName("Login");
         e.target.reset();
     }
 
@@ -22,11 +24,11 @@ const Register = () => {
                     <p className="text-gray-500">Select your Gender: </p>
                     <div className="flex items-center gap-1">
                         <label htmlFor="male">Male </label>
-                        <input type="radio" name="radio" id="" />
+                        <input onChange={(e) => setGender(e.target.id)} type="radio" name="radio" id="male" />
                     </div>
                     <div className="flex items-center gap-1">
                         <label htmlFor="female">Female </label>
-                        <input type="radio" name="radio" id="" />
+                        <input onChange={(e) => setGender(e.target.id)} type="radio" name="radio" id="female" />
                     </div>
                 </div>
 

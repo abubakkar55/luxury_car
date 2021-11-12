@@ -9,4 +9,15 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
+.login-register-animation{
+animation: imgAnimate 0.8s linear infinite alternate-reverse;
+}
 
+@keyframes imgAnimate {
+  0%{
+transform: translateY(0);
+  }
+  100%{
+    transform: translateY(22px);
+  }
+}

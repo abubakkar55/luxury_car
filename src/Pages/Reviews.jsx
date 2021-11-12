@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SinglePd = () => {
+const Reviews = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const SinglePd = () => {
     )
 }
 
-export default SinglePd
+export default Reviews
