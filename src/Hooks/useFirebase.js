@@ -12,8 +12,7 @@ const useFirebase = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [name, setName] = useState("Login");
     const [gender, setGender] = useState("");
-    const errorMessage = () => swal("Oppos!", "wrong password ", "warning");
-
+    const errorMessage = (message) => swal("Oppos!", `${message}`, "warning");
 
     const inputData = [
         {
@@ -91,11 +90,11 @@ const useFirebase = () => {
                 //data.gender = gender;
                 setFirebaseData(res.user);
                 successMeassage();
-                history.replace(redirect_Uri);
+                history.push(redirect_Uri);
             })
             .catch((error) => {
                 setFirebaseError(error.message);
-                errorMessage();
+                errorMessage(error.message);
             })
             .finally(() => {
                 setIsLoading(false);

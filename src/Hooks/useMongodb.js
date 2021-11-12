@@ -21,6 +21,8 @@ const useMongodb = () => {
             })
     }, []);
 
+
+
     return { sliderData, productsData };
 }
 

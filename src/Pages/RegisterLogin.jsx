@@ -6,10 +6,15 @@ import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useMongoFirebase from '../Hooks/useMongoFirebase';
 import swal from 'sweetalert';
+import { useLocation } from 'react-router';
 
 const RegisterLogin = () => {
     const { firebaseContext: { googleSignIn, signInUser, logOut, signUpUser, isLoading, firebaseError, firebaseData, name, setName } } = useMongoFirebase();
     const btnData = ["Login", "Register"];
+
+    const location = useLocation();
+    const redirect_Uri = location.state?.from || "/"; 
+    console.log(redirect_Uri, "location");
 
     return (
         <div className="container mx-auto px-8 py-20">
@@ -30,7 +35,7 @@ const RegisterLogin = () => {
                             </div>
 
                             {
-                                name === "Login" ? <Login /> : <Register />
+                                name === "Login" ? <Login redirect_Uri={redirect_Uri} /> : <Register />
                             }
 
                             <div className="text-center mt-6">

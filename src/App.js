@@ -11,6 +11,8 @@ import MongoFirebaseProvider from './Context/MongoFirebaseProvider';
 import RegisterLogin from './Pages/RegisterLogin';
 import ExploreProducts from './Pages/ExploreProducts';
 import Reviews from './components/Reviews/Reviews';
+import ProductDetails from './Pages/ProductDetails/ProductDetails';
+import PrivateRoute from './Private/PrivateRoute';
 
 
 function App() {
@@ -44,6 +46,9 @@ function App() {
               <Reviews />
             </Route>
 
+            <PrivateRoute  path="/products_details/:id">
+              <ProductDetails />
+            </PrivateRoute>
 
 
             <Route path="*">
