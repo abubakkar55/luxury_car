@@ -14,6 +14,7 @@ import Reviews from './components/Reviews/Reviews';
 import ProductDetails from './Pages/ProductDetails/ProductDetails';
 import PrivateRoute from './Private/PrivateRoute';
 import FaqPage from './Pages/FaqPage';
+import Dashboard from './Pages/Dashboard';
 
 
 function App() {
@@ -50,6 +51,10 @@ function App() {
             <Route  path="/faq">
               <FaqPage />
             </Route>
+
+            <PrivateRoute path="/dashboard">
+              <Dashboard />
+            </PrivateRoute>
 
             <PrivateRoute  path="/products_details/:id">
               <ProductDetails />

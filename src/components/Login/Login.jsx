@@ -1,20 +1,21 @@
 
-import React from 'react'
+import React, { useState } from 'react'
 import { useHistory } from 'react-router';
 import useMongoFirebase from '../../Hooks/useMongoFirebase';
 import swal from 'sweetalert';
 
 const Login = ({ redirect_Uri }) => {
-    const { firebaseContext: { handleUserData, inputData, userData, signInUser, firebaseData } } = useMongoFirebase();
+    const { firebaseContext: { inputData, signInUser, firebaseData, userData, setUserData, handleUserData } } = useMongoFirebase();
 
     const history = useHistory();
 
-    const success = () => swal(`Welcome to Luxury Car`, "You are successfully signed", "success");
     const passwordNotMatched = () => swal("Oppos!", "your password didn't matched", "warning");
+
 
     const handleLoginSubmit = (e) => {
         e.preventDefault();
-        signInUser(history, redirect_Uri, success, passwordNotMatched);
+        signInUser(userData?.logingEmail,userData?.logingPassword, userData?.logingPassword2 ,
+            history, redirect_Uri, passwordNotMatched);
     }
 
     return (

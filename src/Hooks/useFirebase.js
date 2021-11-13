@@ -2,17 +2,19 @@ import { useState, useEffect } from "react"
 import firebaseInit from './../Firebase/firebaseInit';
 import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile } from "firebase/auth";
 import swal from "sweetalert";
+import axios from "axios";
 
 firebaseInit();
 
 const useFirebase = () => {
-    const [userData, setUserData] = useState({});
     const [firebaseData, setFirebaseData] = useState({});
     const [firebaseError, setFirebaseError] = useState("");
     const [isLoading, setIsLoading] = useState(true);
     const [name, setName] = useState("Login");
+    const [userData, setUserData] = useState({});
     const [gender, setGender] = useState("");
     const errorMessage = (message) => swal("Oppos!", `${message}`, "warning");
+    const successMessage = () => swal(`Welcome to Luxury Car`, "You are successfully signed", "success");
 
     const inputData = [
         {
@@ -45,13 +47,13 @@ const useFirebase = () => {
             name: "registerPassword",
             placeholder: "password",
         },
-        
+
         {
             type: "text",
             name: "phone",
             placeholder: "phone",
         },
-        
+
         {
             type: "text",
             name: "city",
@@ -73,7 +75,7 @@ const useFirebase = () => {
 
     ];
 
-    // colletc dat from user
+
     const handleUserData = (e) => {
         const field = e.target.name;
         const value = e.target.value;
@@ -82,8 +84,8 @@ const useFirebase = () => {
         setUserData(newData);
     }
 
-    const auth = getAuth();
 
+    const auth = getAuth();
     const googleProvider = new GoogleAuthProvider();
 
     // google sign in
@@ -92,9 +94,12 @@ const useFirebase = () => {
         signInWithPopup(auth, googleProvider)
             .then((result) => {
                 setFirebaseError("");
+                saveUser(result.user.displayName,result.user.email, 'PUT');
                 setFirebaseData(result.user);
+                successMessage();
             }).catch((error) => {
                 setFirebaseError(error.message);
+                errorMessage(error.message);
             })
             .finally(() => {
                 setIsLoading(false);
@@ -102,20 +107,20 @@ const useFirebase = () => {
     };
 
     // sign in  
-    const signInUser = (history, redirect_Uri, successMeassage, passwordNotMatched) => {
+    const signInUser = (logingEmail, logingPassword, logingPassword2, history, redirect_Uri, successMessage, passwordNotMatched) => {
         setIsLoading(true);
-        if (userData.logingPassword !== userData.logingPassword2) {
+        if (logingPassword !== logingPassword2) {
             passwordNotMatched();
             setIsLoading(false);
             return;
         }
-        signInWithEmailAndPassword(auth, userData?.logingEmail, userData?.logingPassword)
+        signInWithEmailAndPassword(auth, logingEmail, logingPassword)
             .then(res => {
                 setFirebaseError("");
                 //const data = res.user;
                 //data.gender = gender;
                 setFirebaseData(res.user);
-                successMeassage();
+                successMessage();
                 history.push(redirect_Uri);
             })
             .catch((error) => {
@@ -127,27 +132,37 @@ const useFirebase = () => {
             });
     }
 
-    // update user
-    const updateUser = () => {
+    //// update user
+    const updateUser = (name) => {
         updateProfile(auth.currentUser, {
-            displayName: userData?.registerName
-        }).then(res => {
+            displayName: name
+        }).then(() => {
 
-        });
+        })
+            .catch((er) => {
+                console.log(er);
+            })
+            .finally(() => {
+            })
+
     }
 
     // sign up  
-    const signUpUser = () => {
+    const signUpUser = (name, email, password, setName) => {
         setIsLoading(true)
-        createUserWithEmailAndPassword(auth, userData?.registerEmail, userData?.registerPassword)
+        createUserWithEmailAndPassword(auth, email, password)
             .then(res => {
-                updateUser();
+                updateUser(name);
                 setFirebaseError("");
                 setFirebaseData(res.user);
+                saveUser(name, email, 'POST');
+                setName("Login")
                 logOut();
             })
+
             .catch((error) => {
                 setFirebaseError(error.message);
+                errorMessage(error.message);
             })
             .finally(() => {
                 setIsLoading(false);
@@ -165,7 +180,6 @@ const useFirebase = () => {
             });
     }
 
-
     // user observer 
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
@@ -179,7 +193,25 @@ const useFirebase = () => {
     }, [])
 
 
+    // save user to db
+    const saveUser = (name, email, method) => {
+        const user = { name, email };
+        fetch("https://fierce-everglades-12105.herokuapp.com/add_user_data", {
+            method: method,
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: user
+        })
+            .then(res => {
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
     return { userData, setUserData, handleUserData, inputData, googleSignIn, signInUser, logOut, signUpUser, isLoading, firebaseError, firebaseData, name, setName, setGender }
 }
 
-export default useFirebase
+export default useFirebase;

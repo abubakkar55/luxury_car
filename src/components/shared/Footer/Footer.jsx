@@ -4,8 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebookF, faLinkedinIn, faInstagram, faGitAlt, faDribbble } from '@fortawesome/free-brands-svg-icons'
 import { faChevronRight, faPhoneAlt, faEnvelope, faLocationArrow } from '@fortawesome/free-solid-svg-icons'
 const Footer = () => {
-    const iconData = [faFacebookF, faLinkedinIn, faInstagram, faGitAlt, faDribbble]
-    const infoData = [
+const infoData = [
         {
             icon: faLocationArrow,
             name: "new york road, 125 USA"
@@ -34,8 +33,7 @@ const Footer = () => {
         "Reviews",
         "Latest News"
     ];
-    const about = links.slice(0, 6);
-    const customer = links.slice(6);
+
     return (
         <div className="bg-gray-700 text-gray-400 py-8 lg:py10 px-5">
 
@@ -49,7 +47,7 @@ const Footer = () => {
                 <div className="flex items-center justify-center gap-4 mt-4 text-lg mx-auto text-">
 
                     {
-                        iconData.map((item, index) => <span key={index} className="w-8 h-8 flex items-center justify-center hover:bg-orange-600 transition-colors hover:text-white rounded-full bg-gray-800">
+                        [faFacebookF, faLinkedinIn, faInstagram, faGitAlt, faDribbble].map((item, index) => <span key={index} className="w-8 h-8 flex items-center justify-center hover:bg-orange-600 transition-colors hover:text-white rounded-full bg-gray-800">
                             <FontAwesomeIcon icon={item} /> </span>
                         )
                     }
@@ -81,7 +79,7 @@ const Footer = () => {
                         <ul>
 
                             {
-                                about.map((item, index) => <li key={index} className="hover:text-orange-600 mb-2">
+                                links?.slice(0, 6)?.map((item, index) => <li key={index} className="hover:text-orange-600 mb-2">
                                     <FontAwesomeIcon icon={faChevronRight} /> {item} </li>
                                 )
                             }
@@ -93,7 +91,7 @@ const Footer = () => {
                         <ul>
 
                             {
-                                customer.map((item, index) => <li key={index} className="hover:text-orange-600 mb-2">
+                                links?.slice(6)?.map((item, index) => <li key={index} className="hover:text-orange-600 mb-2">
                                     <FontAwesomeIcon icon={faChevronRight} /> {item} </li>
                                 )
                             }

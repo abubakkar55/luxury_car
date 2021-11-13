@@ -15,7 +15,7 @@ const FaqPage = () => {
             answer: "Animi, iusto? Sequi quibusdam distinctio, magnam nam, dolore suscipit velit provident eum possimus earum nisi"
         },
         {
-            question: "will Luxury Car open a branch in Dhaka",
+            question: "will Luxury Car open a branch in california",
             answer: "Animi, iusto? Sequi quibusdam distinctio, magnam nam, dolore suscipit velit provident eum possimus earum nisi"
         },
         {

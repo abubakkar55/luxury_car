@@ -1,13 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import useMongoFirebase from '../../Hooks/useMongoFirebase';
 
 const Register = () => {
-    const { firebaseContext: { handleUserData, userData, inputData, signUpUser, logOut, setName, isLoading, firebaseError, firebaseData, setGender } } = useMongoFirebase();
+    const { firebaseContext: { inputData, signUpUser, logOut, setName, setGender, userData,  handleUserData } } = useMongoFirebase();
 
     const handleRegisterSubmit = (e) => {
         e.preventDefault();
-        signUpUser();
-        setName("Login");
+        signUpUser(userData?.registerName,userData?.registerEmail,userData?.registerPassword,setName);
         e.target.reset();
     }
 

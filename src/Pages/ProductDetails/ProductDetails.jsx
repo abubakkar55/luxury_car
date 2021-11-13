@@ -11,7 +11,7 @@ const ProductDetails = () => {
     const { firebaseContext: { inputData, firebaseData }, mongoContext: { handleUserInfo, userInfo, setUserInfo } } = useMongoFirebase();
     const [singleProductData, setSingleProductsData] = useState({});
     const { image, name, description, fuel, condition, cc, price, _id } = singleProductData
-    const { displayName, email } = firebaseData
+    const { displayName, email } = firebaseData;
 
     // get a specific product data
     useEffect(() => {
@@ -24,20 +24,22 @@ const ProductDetails = () => {
 
     const handleAddToDb = (e) => {
         e.preventDefault();
-        const newData = { ...userInfo };
-        newData.productId = _id;
-        newData.emailAddress = email;
-        newData.displayName = displayName;
-        setUserInfo(newData);
+        const date = new Date().toLocaleString();
+        const newData = { ...userInfo, date: date, displayName: displayName, email: email, productId: _id };
+        //newData.productId = _id;
+        //newData.emailAddress = firebaseData?.email;
+        //newData.displayName = firebaseData?.displayName;
+        //console.log(date);
+        //newData.time = date; 
 
         // post to the db of user infomation
-        axios.post("https://fierce-everglades-12105.herokuapp.com/add_to_product", userInfo)
+        axios.post("https://fierce-everglades-12105.herokuapp.com/add_to_product", newData)
             .then(res => {
                 if (res.statusText === "OK") {
                     swal(`Extraordinary!`, "Your order successfully added to the cart", "success");
+                    e.target.reset();
                 }
             });
-        e.target.reset();
     }
 
     return (
