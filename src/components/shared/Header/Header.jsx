@@ -62,7 +62,9 @@ const Header = () => {
                                     {/*  navbar  */}
 
                                     <li>
+                                    <NavLink to="/"> 
                                         <FontAwesomeIcon onClick={logOut} className="text-2xl cursor-pointer" icon={faSignOutAlt} />
+                                      </NavLink>
                                     </li>
                                 </>
                                 :
