@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 import useMongoFirebase from '../../Hooks/useMongoFirebase';
 import "./Banner.css";
 
-
 // Direct React component imports
 import SwiperCore, { Navigation, Pagination, Autoplay, Scrollbar } from 'swiper/core';
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -14,7 +13,6 @@ import 'swiper/components/navigation/navigation.min.css';
 SwiperCore.use([Navigation, Pagination, Autoplay, Scrollbar])
 
 const Banner = () => {
-
     const { mongoContext: { sliderData } } = useMongoFirebase();
 
     return (
@@ -22,7 +20,7 @@ const Banner = () => {
             {
                 sliderData.length > 0 ?
 
-                    <div className="" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2)), url(${bg})`, backgroundPosition: "center center", backgroundSize: "100% 100%" }}
+                    <div style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2)), url(${bg})`, backgroundPosition: "center center", backgroundSize: "100% 100%" }}
                     >
 
                         <Swiper
@@ -32,8 +30,8 @@ const Banner = () => {
                             scrollbar={{ draggable: true }}
                             navigation={true}
                             slidesPerView={1}
-                            onSlideChange={() => console.log('slide change')}
                             autoplay={true}
+                            //onSlideChange={() => console.log('slide change')}
                         //onSwiper={(swiper) => console.log(swiper)}
                         >
 
@@ -68,8 +66,7 @@ const Banner = () => {
                     :
                     (
                         <div className="h-screen flex items-center justify-center">
-                        <img src="https://assets.materialup.com/uploads/fa8430a1-4dea-49d9-a4a3-e5c6bf0b2afb/preview.gif" alt="" />
-
+                        <img src="https://assets.materialup.com/uploads/fa8430a1-4dea-49d9-a4a3-e5c6bf0b2afb/preview.gif" alt="spinner-img" />
                         </div>
                     )
             }

@@ -14,7 +14,6 @@ const RegisterLogin = () => {
 
     const location = useLocation();
     const redirect_Uri = location.state?.from || "/"; 
-    console.log(redirect_Uri, "location");
 
     return (
         <div className="container mx-auto px-8 py-20">

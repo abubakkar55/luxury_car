@@ -13,6 +13,7 @@ import ExploreProducts from './Pages/ExploreProducts';
 import Reviews from './components/Reviews/Reviews';
 import ProductDetails from './Pages/ProductDetails/ProductDetails';
 import PrivateRoute from './Private/PrivateRoute';
+import FaqPage from './Pages/FaqPage';
 
 
 function App() {
@@ -46,18 +47,19 @@ function App() {
               <Reviews />
             </Route>
 
+            <Route  path="/faq">
+              <FaqPage />
+            </Route>
+
             <PrivateRoute  path="/products_details/:id">
               <ProductDetails />
             </PrivateRoute>
-
 
             <Route path="*">
               <NotFound />
             </Route>
 
-
           </Switch>
-
           <Footer />
         </Router>
 

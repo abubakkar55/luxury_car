@@ -36,7 +36,6 @@ const Footer = () => {
     ];
     const about = links.slice(0, 6);
     const customer = links.slice(6);
-    console.log(about, customer);
     return (
         <div className="bg-gray-700 text-gray-400 py-8 lg:py10 px-5">
 

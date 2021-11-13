@@ -6,7 +6,7 @@ import { faGasPump, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 const SinglePd = ({ name, image, description, _id, price, condition, fuel }) => {
 
     return (
-        <div className="p-5 shadow rounded-md">
+        <div data-aos="zoom-in" data-aos-delay="200" data-aos-duration="600" className="p-5 shadow rounded-md">
             <div className="relative">
                 <div>
                     <button className="px-4 py-1 text-sm outline-none  bg-orange-500 rounded shadow text-white absolute left-0">{condition} </button>

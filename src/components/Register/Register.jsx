@@ -4,7 +4,6 @@ import useMongoFirebase from '../../Hooks/useMongoFirebase';
 const Register = () => {
     const { firebaseContext: { handleUserData, userData, inputData, signUpUser, logOut, setName, isLoading, firebaseError, firebaseData, setGender } } = useMongoFirebase();
 
-
     const handleRegisterSubmit = (e) => {
         e.preventDefault();
         signUpUser();
@@ -16,7 +15,7 @@ const Register = () => {
         <div className="p-6 shadow-md rounded">
             <form onSubmit={handleRegisterSubmit}>
                 {
-                    inputData?.slice(3)?.map((item, index) =>
+                    inputData?.slice(3, 6)?.map((item, index) =>
                         <input key={index} className="w-full outline-none p-3 rounded border-2 focus:border-orange-500 mb-4 text-sm" onChange={handleUserData} type={item.type} name={item.name} placeholder={item.placeholder} required />
                     )
                 }
@@ -34,7 +33,9 @@ const Register = () => {
 
 
                 <button className="px-6 py-2 shadow border-2 border-orange-500 rounded" type="submit">Register </button>
+
             </form>
+
         </div>
     )
 }

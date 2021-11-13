@@ -45,6 +45,32 @@ const useFirebase = () => {
             name: "registerPassword",
             placeholder: "password",
         },
+        
+        {
+            type: "text",
+            name: "phone",
+            placeholder: "phone",
+        },
+        
+        {
+            type: "text",
+            name: "city",
+            placeholder: "city",
+        },
+
+        {
+            type: "text",
+            name: "address1",
+            placeholder: "address 1",
+        },
+
+        {
+            type: "text",
+            name: "address2",
+            placeholder: "address 2",
+        },
+
+
     ];
 
     // colletc dat from user
@@ -122,7 +148,6 @@ const useFirebase = () => {
             })
             .catch((error) => {
                 setFirebaseError(error.message);
-                console.log(error.message);
             })
             .finally(() => {
                 setIsLoading(false);

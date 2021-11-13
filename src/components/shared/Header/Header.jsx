@@ -6,12 +6,11 @@ import { faSignOutAlt, faBars, faTimes } from '@fortawesome/free-solid-svg-icons
 import img from "../../../images/electric-car.png"
 import useMongoFirebase from './../../../Hooks/useMongoFirebase';
 const Header = () => {
-    
+
     // menu toggle function
     const [isOpen, setIsOpen] = useState(false);
     const toggleMenu = () => setIsOpen(!isOpen);
     const { firebaseContext: { logOut, firebaseData } } = useMongoFirebase();
-    console.log(firebaseData);
 
     return (
         <div className="shadow px-5">
@@ -34,7 +33,7 @@ const Header = () => {
                                 <NavLink to="/reviews">  Reviews   </NavLink>
                             </li>
                             <li>
-                                <NavLink to="/contact_us">  Contact us   </NavLink>
+                                <NavLink to="/faq">  FAQ   </NavLink>
                             </li>
                         </ul>
                     </nav>
@@ -57,7 +56,7 @@ const Header = () => {
                                     </li>
 
                                     <li>
-                                        <img className="w-12 h-12 shadow  rounded-full" src={firebaseData?.photoURL ? firebaseData?.photoURL : "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"} alt="" />
+                                        <img className="w-12 h-12 shadow  rounded-full" src={firebaseData?.photoURL ? firebaseData?.photoURL : "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"} alt="profile-img" />
                                     </li>
 
                                     {/*  navbar  */}
