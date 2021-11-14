@@ -72,7 +72,17 @@ const useFirebase = () => {
             placeholder: "address 2",
         },
 
+        {
+            type: "text",
+            name: "rating",
+            placeholder: "add your rating",
+        },
 
+        {
+            type: "text",
+            name: "message",
+            placeholder: "add your message",
+        },
     ];
 
     const handleUserData = (e) => {
@@ -220,7 +230,6 @@ const useFirebase = () => {
 //            .catch(err => {
 //            });
 //    }
-
 
     return { userData, setUserData, handleUserData, inputData, googleSignIn, signInUser, logOut, signUpUser, isLoading, firebaseError, firebaseData, name, setName, setGender }
 }

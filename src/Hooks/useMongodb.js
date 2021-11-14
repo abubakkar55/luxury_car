@@ -5,6 +5,7 @@ const useMongodb = () => {
     const [sliderData, setSliderData] = useState([]);
     const [productsData, setProductsData] = useState([]);
     const [userInfo, setUserInfo] = useState({});
+    const [allOrders, setAllOrders] = useState([]);
 
     const handleUserInfo = (e) => {
         const field = e.target.name;
@@ -22,7 +23,18 @@ const useMongodb = () => {
             })
     }, []);
 
-    // get products data
+        // get all orders of all user 
+        useEffect(() => {
+            axios.get("https://fierce-everglades-12105.herokuapp.com/orders")
+                .then(res => {
+                    setAllOrders(res.data);
+                    console.log(res);
+                });
+        }, []);
+    
+    
+      
+        // get products data
     useEffect(() => {
         axios.get("https://fierce-everglades-12105.herokuapp.com/products_data")
             .then(res => {
@@ -31,7 +43,8 @@ const useMongodb = () => {
     }, []);
 
 
-    return { sliderData, productsData, handleUserInfo, userInfo, setUserInfo };
+
+    return { sliderData, productsData, handleUserInfo, userInfo, setUserInfo, allOrders, };
 }
 
 export default useMongodb;

@@ -37,10 +37,10 @@ const Banner = () => {
 
                             {sliderData.map((item, index) => {
                                 return (
-                                    <SwiperSlide key={index} className="pl-10">
-                                        <div className="flex items-center justify-between h-screen">
-                                            <div className="w-1/2 px-10">
-                                                <h2 data-aos="fade-up" data-aos-duration="500" className="text-5xl font-semibold text-white font-permanent-marker mb-4">
+                                    <SwiperSlide key={index} className="md:pl-10">
+                                        <div className="flex flex-col md:flex-row md:items-center justify-center md:justify-between h-screen">
+                                            <div className="md:w-1/2 px-10 order-2 md:order-1">
+                                                <h2 data-aos="fade-up" data-aos-duration="500" className="text-2xl md:3xl lg:text-5xl font-semibold text-white font-permanent-marker mb-4">
                                                     {item.name}
                                                 </h2>
 
@@ -48,11 +48,11 @@ const Banner = () => {
                                                     {item.description}
                                                 </p>
                                                 <button data-aos="fade-up" data-aos-delay="500" data-aos-duration="800" className="px-7 py-3 border-2 border-white font-semibold font-permanent-marker text-white  hover:bg-white hover:text-black">
-                                                    <NavLink to="/products">Check it out </NavLink>
+                                                    <NavLink to="/explore_cars">Check it out </NavLink>
                                                 </button>
                                             </div>
-                                            <div className="w-1/2">
-                                                <img data-aos="fade-left" data-aos-delay="600" data-aos-duration="1000" className="-mt-20 w-full h-2/5" src={item.image} alt="slider-img" />
+                                            <div className="md:w-1/2 order-1 md:order-2">
+                                                <img data-aos="fade-left" data-aos-delay="600" data-aos-duration="1000" className="-mt-20 h-64 w-64 md:w-full sm:w-72 sm:h72   md:h-2/5" src={item.image} alt="slider-img" />
                                             </div>
                                         </div>
 

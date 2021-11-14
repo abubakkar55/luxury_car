@@ -25,13 +25,8 @@ const ProductDetails = () => {
     const handleAddToDb = (e) => {
         e.preventDefault();
         const date = new Date().toLocaleString();
-        const newData = { ...userInfo, date: date, displayName: displayName, email: email, productId: _id };
-        //newData.productId = _id;
-        //newData.emailAddress = firebaseData?.email;
-        //newData.displayName = firebaseData?.displayName;
-        //console.log(date);
-        //newData.time = date; 
-
+        const newData = { ...userInfo,  date, displayName,  email, productId: _id, image, name, price };
+        
         // post to the db of user infomation
         axios.post("https://fierce-everglades-12105.herokuapp.com/add_to_product", newData)
             .then(res => {
@@ -76,7 +71,7 @@ const ProductDetails = () => {
             <div className="w-full md:w-3/4 mx-auto p-5 shadow-lg mt-10">
                 <form onSubmit={handleAddToDb}>
                     {
-                        inputData?.slice(6)?.map((item, index) =>
+                        inputData?.slice(6, 10)?.map((item, index) =>
                             <input key={index} className="w-full outline-none p-3 rounded border-2 focus:border-orange-500 mb-4 text-sm" onChange={handleUserInfo} type={item.type} name={item.name} placeholder={item.placeholder} required />
                         )
                     }
