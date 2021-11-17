@@ -13,7 +13,6 @@ const AddReview = () => {
         const { rating, message } = userData;
         const { displayName, photoURL } = firebaseData;
         const newData = { rating, message, date, displayName, photoURL };
-        console.log(newData);
         // post to the db of user infomation
         axios.post("https://fierce-everglades-12105.herokuapp.com/add_review_db", newData)
             .then(res => {
@@ -28,7 +27,7 @@ const AddReview = () => {
         <div className="pt-20 px-16">
             <form onSubmit={handleAddToDb}>
                 {
-                    inputData?.slice(10)?.map((item, index) =>
+                    inputData?.slice(10, 12)?.map((item, index) =>
                         <input key={index} className="w-full outline-none p-3 rounded border-2 focus:border-orange-500 mb-4 text-sm" onChange={handleUserData} type={item.type} name={item.name} placeholder={item.placeholder} required />
                     )
                 }

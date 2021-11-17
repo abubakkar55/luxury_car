@@ -20,6 +20,7 @@ import AddReview from './../components/AddReview/AddReview';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faBars } from '@fortawesome/free-solid-svg-icons';
 import Header from './../components/shared/Header/Header';
+import AddAProduct from './AddAProduct';
 
 const Dashboard = () => {
 
@@ -27,14 +28,12 @@ const Dashboard = () => {
     const toggleMenu = () => setIsOpen(!isOpen);
 
 
-
-
     let { path, url } = useRouteMatch();
 
     const { firebaseContext: { firebaseData } } = useMongoFirebase();
     const [isAdmin, setIsAdmin] = useState(false);
 
-    // get all user data
+    // test a user for making an admin
     useEffect(() => {
         axios.get(`https://fierce-everglades-12105.herokuapp.com/test_email/${firebaseData?.email}`)
             .then(res => {
@@ -115,6 +114,10 @@ const Dashboard = () => {
 
                         <Route path={`${path}/add_review`}>
                             <AddReview />
+                        </Route>
+
+                        <Route path={`${path}/add_product`}>
+                            <AddAProduct />
                         </Route>
 
                         <Route path={`${path}/logout`}>

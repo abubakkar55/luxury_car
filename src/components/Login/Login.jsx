@@ -11,7 +11,6 @@ const Login = ({ redirect_Uri }) => {
 
     const passwordNotMatched = () => swal("Oppos!", "your password didn't matched", "warning");
 
-
     const handleLoginSubmit = (e) => {
         e.preventDefault();
         signInUser(userData?.logingEmail,userData?.logingPassword, userData?.logingPassword2 ,

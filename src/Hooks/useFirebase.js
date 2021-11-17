@@ -17,6 +17,8 @@ const useFirebase = () => {
     const successMessage = () => swal(`Welcome to Luxury Car`, "You are successfully signed", "success");
 
     const inputData = [
+
+        // login fields =============
         {
             type: "email",
             name: "logingEmail",
@@ -32,6 +34,8 @@ const useFirebase = () => {
             name: "logingPassword2",
             placeholder: "Re-type password",
         },
+
+        // register fields ==============
         {
             type: "text",
             name: "registerName",
@@ -47,6 +51,8 @@ const useFirebase = () => {
             name: "registerPassword",
             placeholder: "password",
         },
+
+        // details to buy car fields =============
 
         {
             type: "text",
@@ -72,6 +78,7 @@ const useFirebase = () => {
             placeholder: "address 2",
         },
 
+        // add rating fields
         {
             type: "text",
             name: "rating",
@@ -83,6 +90,39 @@ const useFirebase = () => {
             name: "message",
             placeholder: "add your message",
         },
+
+        // add to product fields
+        {
+            type: "text",
+            name: "name",
+            placeholder: "product Name",
+        },
+
+        {
+            type: "text",
+            name: "description",
+            placeholder: "product Details",
+        },
+        {
+            type: "text",
+            name: "price",
+            placeholder: "product price",
+        },
+        {
+            type: "text",
+            name: "fuel",
+            placeholder: "fuel Method",
+        },
+        {
+            type: "text",
+            name: "cc",
+            placeholder: "cc",
+        },
+        {
+            type: "text",
+            name: "condition",
+            placeholder: "Condition",
+        },
     ];
 
     const handleUserData = (e) => {
@@ -93,7 +133,6 @@ const useFirebase = () => {
         setUserData(newData);
     }
 
-
     const auth = getAuth();
     const googleProvider = new GoogleAuthProvider();
 
@@ -102,9 +141,9 @@ const useFirebase = () => {
         setIsLoading(true);
         signInWithPopup(auth, googleProvider)
             .then((result) => {
-                const {displayName, email} = result.user;
+                const { displayName, email } = result.user;
                 setFirebaseError("");
-                saveUser(displayName, email, 'PUT' );
+                saveUser(displayName, email, 'PUT');
                 setFirebaseData(result.user);
                 successMessage();
                 history.push(redirect_Uri);
@@ -204,32 +243,32 @@ const useFirebase = () => {
         fetch("https://fierce-everglades-12105.herokuapp.com/add_user_data", {
             method: method,
             headers: {
-                'content-type': "application/json" 
+                'content-type': "application/json"
             },
             body: JSON.stringify(user)
         }).then(res => {
 
         }).catch(err => {
-            });
+        });
 
-/*
-        axios.post("https://fierce-everglades-12105.herokuapp.com/add_user_data", { user }
-        ).then(res => {
-
-        })
-            .catch(err => {
-            });*/
+        /*
+                axios.post("https://fierce-everglades-12105.herokuapp.com/add_user_data", { user }
+                ).then(res => {
+        
+                })
+                    .catch(err => {
+                    });*/
     }
-//
-//    const saveGoogleUser = (name, email) => {
-//        const user = { name, email };
-//        axios.put("https://fierce-everglades-12105.herokuapp.com/add_user_data", { user }
-//        ).then(res => {
-//
-//        })
-//            .catch(err => {
-//            });
-//    }
+    //
+    //    const saveGoogleUser = (name, email) => {
+    //        const user = { name, email };
+    //        axios.put("https://fierce-everglades-12105.herokuapp.com/add_user_data", { user }
+    //        ).then(res => {
+    //
+    //        })
+    //            .catch(err => {
+    //            });
+    //    }
 
     return { userData, setUserData, handleUserData, inputData, googleSignIn, signInUser, logOut, signUpUser, isLoading, firebaseError, firebaseData, name, setName, setGender }
 }

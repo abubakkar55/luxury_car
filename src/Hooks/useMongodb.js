@@ -28,12 +28,10 @@ const useMongodb = () => {
             axios.get("https://fierce-everglades-12105.herokuapp.com/orders")
                 .then(res => {
                     setAllOrders(res.data);
-                    console.log(res);
                 });
         }, []);
     
     
-      
         // get products data
     useEffect(() => {
         axios.get("https://fierce-everglades-12105.herokuapp.com/products_data")
