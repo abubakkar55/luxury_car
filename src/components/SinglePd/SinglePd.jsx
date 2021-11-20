@@ -17,7 +17,7 @@ const SinglePd = ({ name, image, description, _id, price, condition, fuel }) => 
                         <FontAwesomeIcon className="mr-1" icon={faGasPump} />
                         {fuel}
                     </button>
-                    <img className="mx-auto pt-10 w-64 h-48" src={image} alt="car-img" />
+                    <img className="mx-auto pt-10 w-64 h-48" src={`data:image/png;base64,${image}`} alt="car-img" />
                 </div>
 
                 <div>

@@ -28,7 +28,7 @@ const ProductDetails = () => {
         const newData = { ...userInfo,  date, displayName,  email, productId: _id, image, name, price };
         
         // post to the db of user infomation
-        axios.post("https://fierce-everglades-12105.herokuapp.com/add_to_product", newData)
+        axios.post("https://fierce-everglades-12105.herokuapp.com/add_to_order", newData)
             .then(res => {
                 if (res.statusText === "OK") {
                     swal(`Extraordinary!`, "Your order successfully added to the cart", "success");
@@ -41,7 +41,7 @@ const ProductDetails = () => {
         <div className="container mx-auto px-6 py-10 md:py-20">
             <div className="flex  flex-col md:flex-row items-center justify-center md:justify-between gap-6">
                 <div className="md:w-1/2">
-                    <img className="w-4/5 h-72 mx-auto md:mx-0" src={image} alt="car-img" />
+                    <img className="w-4/5 h-72 mx-auto md:mx-0" src={`data:image/png;base64,${image}`} alt="car-img" />
                 </div>
 
                 <div className="md:w-1/2 lg:pr-20">

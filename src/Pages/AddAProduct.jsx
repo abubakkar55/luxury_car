@@ -4,22 +4,35 @@ import axios from 'axios';
 import { useState } from 'react';
 
 const AddAProduct = () => {
-    const { firebaseContext: { inputData, firebaseData, userData, setUserData, handleUserData } } = useMongoFirebase();
     const [image, setImage] = useState(null);
+    const { firebaseContext: { inputData, firebaseData, userData, setUserData, handleUserData } } = useMongoFirebase();
 
     const handleAddProduct = (e) => {
         e.preventDefault();
-        const { pdName, pdDetails, pdCc, pdCondition, pdFuel, pdPrice } = userData;
-        const newData = { pdName, pdDetails, pdCc, pdCondition, pdFuel, pdPrice };
-        const formData = new FormData();
 
-        axios.post("https://fierce-everglades-12105.herokuapp.com/add_product_db", newData)
+        const { name, description, cc, condition, fuel, price } = userData;
+        const formData = new FormData();
+        formData.append("name", name);
+        formData.append("description", description);
+        formData.append("image", image);
+        formData.append("price", price);
+        formData.append("fuel", fuel);
+        formData.append("condition", condition);
+        formData.append("cc", cc);
+
+        fetch("https://fierce-everglades-12105.herokuapp.com/add_product_db", {
+            method: 'POST',
+            body: formData
+        })
+            .then(data => data.json())
             .then(res => {
-                if (res.statusText === "OK") {
+                if (res.insertedId) {
                     alert("added successfully")
-                    e.target.reset();
-                }
-            });
+                    //e.target.reset();
+                    }
+            }).catch(error =>{
+                alert(error?.message);
+            })
     }
 
     return (
@@ -31,7 +44,7 @@ const AddAProduct = () => {
                             <input key={index} className="w-full outline-none p-3  rounded border-2 focus:border-orange-500 mb-4 text-sm" onChange={handleUserData} type={item.type} name={item.name} placeholder={item.placeholder} required />
                         )
                     }
-                    <input onChange={e => console.log(e.target.files)} className="block" accept="image/*" type="file" required />
+                    <input onChange={e => setImage(e.target.files[0])} className="block" accept="image/*" type="file" required />
                     <button className="px-6 py-2 border-2 border-orange-500 rounded shadow mt-3" type="submit">Add Now</button>
                 </form>
 
