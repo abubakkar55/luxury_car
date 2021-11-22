@@ -4,11 +4,11 @@ import DisplayPd from './../DisplayOrders/DisplayPd';
 
 const ManageAllOrders = () => {
 
-    const { mongoContext: { allOrders } } = useMongoFirebase();
+    const { mongoContext: { allOrders, isFetching } } = useMongoFirebase();
 
     return (
         <div>
-            <DisplayPd data={allOrders} />
+            <DisplayPd data={allOrders} isFetching={isFetching} />
         </div>
     )
 }

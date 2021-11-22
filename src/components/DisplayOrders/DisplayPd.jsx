@@ -1,6 +1,13 @@
 import React from 'react';
 
-const DisplayPd = ({ data }) => {
+const DisplayPd = ({ data, isFetching }) => {
+
+    if (isFetching) {
+        <div className="h-screen flex items-center justify-center">
+            <img src="https://assets.materialup.com/uploads/fa8430a1-4dea-49d9-a4a3-e5c6bf0b2afb/preview.gif" alt="spinner-img" />
+        </div>
+    }
+
     return (
         <div className="py-10">
             <div>
@@ -19,7 +26,7 @@ const DisplayPd = ({ data }) => {
                             )
                         })
                         : <div className="h-screen flex items-center justify-center">
-                            <img src="https://assets.materialup.com/uploads/fa8430a1-4dea-49d9-a4a3-e5c6bf0b2afb/preview.gif" alt="spinner-img" />
+              <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold">You didn't add any product </h1>
                         </div>
                 }
 
