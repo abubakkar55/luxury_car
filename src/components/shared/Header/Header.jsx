@@ -9,7 +9,10 @@ const Header = () => {
 
     // menu toggle function
     const [isOpen, setIsOpen] = useState(false);
-    const toggleMenu = () => setIsOpen(!isOpen);
+    const toggleMenu = (e) => {
+        e.stopPropagation();
+        setIsOpen(!isOpen)
+    };
 
     const { firebaseContext: { logOut, firebaseData } } = useMongoFirebase();
 
@@ -17,10 +20,10 @@ const Header = () => {
         <div className="shadow px-5">
             <div className="container mx-auto flex items-center justify-between h-20">
 
-                <dvi className="flex items-center gap-2 ">
+                <NavLink to="/" className="flex items-center gap-2 ">
                     <img className="w-11" src={img} alt="logo" />
                     <span className="font-bold text-xl text-orange-500 font-permanent-marker"> LUXURY CAR </span>
-                </dvi>
+                </NavLink>
 
                 {/* background overlay */}
                 <div style={{ backgroundColor: "rgba(0, 0, 0, 0.8)" }} className={`${isOpen ? "visible block" : "hidden invisible"} fixed inset-0 w-full h-screen`}></div>

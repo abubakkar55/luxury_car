@@ -18,11 +18,11 @@ const RegisterLogin = () => {
 
     return (
         <div className="container mx-auto px-8 py-20">
-            <div className="flex items-center justify-between gap-8">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-8">
 
                 {
                     isLoading ? <img src="https://assets.materialup.com/uploads/fa8430a1-4dea-49d9-a4a3-e5c6bf0b2afb/preview.gif" alt="spinner" />
-                        : <div className="w-1/2">
+                        : <div className="md:w-1/2">
 
                             <div className="mx-auto text-center">
                                 {
@@ -47,7 +47,7 @@ const RegisterLogin = () => {
                 }
 
 
-                <div className="w-1/2">
+                <div className="md:w-1/2">
                     <img className="login-register-animation w-full h-96" src={img} alt="login-register-img" />
                 </div>
             </div>
