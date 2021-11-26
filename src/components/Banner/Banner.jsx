@@ -1,7 +1,6 @@
 import React from 'react';
 import bg from '../../images/banner-bg.jpg';
 import { NavLink } from 'react-router-dom';
-import useMongoFirebase from '../../Hooks/useMongoFirebase';
 import "./Banner.css";
 
 // Direct React component imports
@@ -13,7 +12,23 @@ import 'swiper/components/navigation/navigation.min.css';
 SwiperCore.use([Navigation, Pagination, Autoplay, Scrollbar])
 
 const Banner = () => {
-    const { mongoContext: { sliderData } } = useMongoFirebase();
+    const sliderData  = [
+        {
+name: "Luxury BWM",
+description : "Bayerische Motoren Werke AG, commonly referred to as BMW, is a German multinational corporate manufacturer of luxury vehicles and motorcycles",
+image : "./images/1.png"
+        },
+        {
+name: "Automotive Marque Mercedes-Benz",
+description : "Mercedes-Benz, commonly referred to as Mercedes, is a German luxury automotive marque. Mercedes-Benz and subsidiary Mercedes-Benz AG – of Daimler AG – are headquartered in Stuttgart, Baden",
+image : "./images/2.png"
+        },
+        {
+name: "Lamborghini Superstar",
+description : "Automobile Lamborghini S.p.A. is an Italian brand and manufacturer of luxury sports cars and SUVs based in Sant'Agata Bolognese.",
+image : "./images/3.png"
+        }
+    ];
 
     return (
         <div>
@@ -52,7 +67,7 @@ const Banner = () => {
                                                 </button>
                                             </div>
                                             <div className="md:w-1/2 order-1 md:order-2">
-                                                <img data-aos="fade-left" data-aos-delay="600" data-aos-duration="1000" className="-mt-20 h-64 w-64 md:w-full sm:w-72 sm:h72   md:h-2/5" src={item.image} alt="slider-img" />
+                                                <img data-aos="fade-left" data-aos-delay="600" data-aos-duration="1000" className="h-64 w-64 mx-auto md:mx-0  sm:w-72 sm:h72 md:w-4/5  md:h-3/5" src={item.image} alt="slider-img" />
                                             </div>
                                         </div>
 

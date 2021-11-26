@@ -16,14 +16,6 @@ const useMongodb = () => {
         setUserInfo(newData);
     }
 
-    // get slider data
-    useEffect(() => {
-        axios.get("https://fierce-everglades-12105.herokuapp.com/slider_data")
-            .then(res => {
-                setSliderData(res.data);
-            })
-    }, []);
-
     // get all orders of all user 
     useEffect(() => {
         setIsFetching(true);
