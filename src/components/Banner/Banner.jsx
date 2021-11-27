@@ -16,17 +16,17 @@ const Banner = () => {
         {
 name: "Luxury BWM",
 description : "Bayerische Motoren Werke AG, commonly referred to as BMW, is a German multinational corporate manufacturer of luxury vehicles and motorcycles",
-image : "./images/1.png"
+image : "https://i.ibb.co/1ZSXtLF/zan-1-BWBi-UUT-AA-unsplash-removebg-preview.png"
         },
         {
 name: "Automotive Marque Mercedes-Benz",
 description : "Mercedes-Benz, commonly referred to as Mercedes, is a German luxury automotive marque. Mercedes-Benz and subsidiary Mercedes-Benz AG – of Daimler AG – are headquartered in Stuttgart, Baden",
-image : "./images/2.png"
+image : "https://i.ibb.co/F8rdtGp/flavien-m-SC5-P8-M14-BM-unsplash-1-removebg-preview.png"
         },
         {
 name: "Lamborghini Superstar",
 description : "Automobile Lamborghini S.p.A. is an Italian brand and manufacturer of luxury sports cars and SUVs based in Sant'Agata Bolognese.",
-image : "./images/3.png"
+image : "https://i.ibb.co/tMN5Wmh/wes-tindel-Mb-PZUel-BTv-U-unsplash-removebg-preview.png"
         }
     ];
 
@@ -67,7 +67,7 @@ image : "./images/3.png"
                                                 </button>
                                             </div>
                                             <div className="md:w-1/2 order-1 md:order-2">
-                                                <img data-aos="fade-left" data-aos-delay="600" data-aos-duration="1000" className="h-64 w-64 mx-auto md:mx-0  sm:w-72 sm:h72 md:w-4/5  md:h-3/5" src={item.image} alt="slider-img" />
+                                                <img data-aos="fade-left" data-aos-delay="600" data-aos-duration="1000" className="-mt-7 h-72 w-72 mx-auto md:mx-0  sm:w-72 sm:h72 md:w-full  md:h-3/5" src={item.image} alt="slider-img" />
                                             </div>
                                         </div>
 
