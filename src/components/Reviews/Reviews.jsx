@@ -1,19 +1,18 @@
+import { Star, StarOutline } from '@material-ui/icons';
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import Rating from 'react-rating';
+import 'swiper/components/effect-coverflow/effect-coverflow.min.css';
+import 'swiper/components/navigation/navigation.min.css';
+import 'swiper/components/pagination/pagination.min.css';
+// Direct React component imports
+import SwiperCore, { Autoplay, EffectCoverflow, Navigation, Pagination, Scrollbar } from 'swiper/core';
+import { Swiper, SwiperSlide } from "swiper/react";
+import 'swiper/swiper-bundle.min.css';
 import './Reviews.css';
 
 
 
-// Direct React component imports
-import SwiperCore, { Navigation, Pagination, Autoplay, Scrollbar, EffectCoverflow } from 'swiper/core';
-import { Swiper, SwiperSlide } from "swiper/react";
-import 'swiper/swiper-bundle.min.css'
-import 'swiper/components/pagination/pagination.min.css';
-import 'swiper/components/navigation/navigation.min.css';
-import 'swiper/components/effect-coverflow/effect-coverflow.min.css';
-import Rating from 'react-rating';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faCheck } from '@fortawesome/free-solid-svg-icons';
-import axios from 'axios';
 
 SwiperCore.use([Navigation, Pagination, Autoplay, Scrollbar, EffectCoverflow])
 
@@ -56,7 +55,7 @@ const Reviews = () => {
 
                             {
                                 review.map((item, n) => {
-                                    const { displayName, rating, message, image } = item;
+                                    const { displayName, rating, message, photoURL } = item;
                                     return (
                                         <SwiperSlide key={n} className="bg-white p-5 shadow-md mt-20" style={{ width: " 370px", height: "240px" }}>
                                             <div className="">
@@ -64,14 +63,14 @@ const Reviews = () => {
                                                 <Rating
                                                     readonly
                                                     initialRating={rating}
-                                                    fullSymbol={<FontAwesomeIcon icon={faStar} />}
+                                                    fullSymbol={<Star />}
                                                     // === sorry sir i can't add a regular star font awesome. i have tried to add it.
-                                                    emptySymbol={<FontAwesomeIcon icon={faCheck} />}
+                                                    emptySymbol={<StarOutline />}
                                                     className="mb-6 text-yellow-500"
                                                 />
                                                 <p className="mb-5 text-gray-400">{message} </p>
                                                 <div className="flex items-center gap-4">
-                                                    <img className="w-12 h-12 shadow  rounded-full" src={image ? image : "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"}
+                                                    <img className="w-12 h-12 shadow  rounded-full" src={photoURL ? photoURL : "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"}
                                                      alt="profile" />
                                                     <h3>{displayName} </h3>
                                                 </div>

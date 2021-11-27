@@ -12,7 +12,7 @@ const Faq = ({ question, answer }) => {
                 <FontAwesomeIcon icon={isOpen ? faMinus : faPlus} />
                 <h3>{question}? </h3>
             </div>
-            <div className={`transition-all  ${isOpen ? "visible h-24 mb-6" : "invisible h-0 mb-0"}  `}>
+            <div className={`transition-all duration-100  ${isOpen ? "visible h-24 mb-6" : "invisible h-0 mb-0"}  `}>
                 <p className="p-3 md:p-6 bg-orange-100 rounded-b-md ">{answer} </p>
             </div>
         </div>
